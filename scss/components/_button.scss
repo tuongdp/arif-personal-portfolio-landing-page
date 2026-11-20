@@ -1,0 +1,31 @@
+@use "../abstracts" as *;
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: $font-size-base;
+    font-weight: 700;
+    padding: 16px 37px;
+    line-height: 3rem;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    @include transition(background-color, 0.3s, ease);
+
+    &--primary {
+        color: #fdfdfd;
+        background-color: $primary-color;
+    }
+
+    &--secondary {
+        color: #080415;
+        background-color: #fff;
+    }
+    &:hover {
+        opacity: 0.85;
+    }
+}

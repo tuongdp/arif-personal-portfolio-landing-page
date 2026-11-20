@@ -1,0 +1,674 @@
+@use "./abstracts";
+@use "./base";
+@use "./layout";
+@use "./components";
+@use "./pages";
+
+// Hero
+.hero {
+    background: abstracts.$bg-color;
+    padding-top: 44px;
+
+    // Hero - Media
+    &__media {
+        position: relative;
+
+        &::after {
+            content: url("../img/hero-decoration-large.svg");
+            position: absolute;
+            right: -123px;
+            bottom: 0;
+        }
+    }
+
+    &__image {
+        @include abstracts.image-cover(514px, 705px);
+        position: relative;
+        z-index: 1;
+    }
+
+    // Hero - Content
+    &__content {
+        margin-left: 70px;
+        position: relative;
+        height: 100%;
+
+        &::after {
+            content: url(../img/hero-decoration-small.svg);
+            position: absolute;
+            bottom: 0;
+            right: -257px;
+        }
+    }
+
+    &__title {
+        font-size: 8rem;
+        font-weight: 500;
+        line-height: 7.6rem;
+        padding-top: 137px;
+    }
+
+    &__description {
+        font-size: 1.8rem;
+        font-weight: 400;
+        line-height: 3rem;
+        width: 370px;
+        margin-top: 20px;
+    }
+
+    &__action {
+        margin-top: 50px;
+        @include abstracts.flex-gap(30px);
+    }
+
+    &__link {
+        font-size: 1.8rem;
+        font-weight: 700;
+        line-height: 3rem;
+        text-decoration: underline;
+        color: abstracts.$secondary-color;
+    }
+
+    &__social {
+        margin-top: 104px;
+        @include abstracts.flex-gap(15px);
+
+        &-label {
+            font-size: 1.6rem;
+            font-weight: 500;
+            line-height: 3rem;
+        }
+
+        &-list {
+            @include abstracts.flex-gap(20px);
+        }
+
+        &-item {
+            @include abstracts.circle(40px);
+            @include abstracts.flex-center;
+            border: 1px solid #e3e2e8;
+        }
+    }
+
+    &__decoration--small {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+}
+
+// Clients
+.clients {
+    margin-top: 98px;
+
+    // Client - Heading
+    &__heading {
+        font-size: 4.2rem;
+        font-weight: 500;
+        line-height: 5rem;
+        position: relative;
+
+        &::before {
+            position: absolute;
+            left: -40%;
+            top: 20px;
+            content: "";
+            display: inline-block;
+            width: 86px;
+            height: 1px;
+            background: abstracts.$primary-color;
+            vertical-align: middle;
+            margin-right: 13px;
+        }
+    }
+
+    // Client - List
+    &__list {
+        margin-left: 57px;
+        display: grid;
+        grid-template-columns: repeat(4, auto);
+        justify-content: space-between;
+        align-items: center;
+        row-gap: 36px;
+    }
+
+    &__item {
+        @include abstracts.flex-gap(12px);
+    }
+}
+
+// Specialities
+.specialities {
+    margin-top: 133px;
+    margin-bottom: 140px;
+
+    // Specialitites - Top
+    &__top {
+        width: 534px;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    &__heading {
+        font-size: 5.6rem;
+        font-weight: 500;
+        line-height: 6.6rem;
+    }
+
+    &__description {
+        font-size: 1.8rem;
+        font-weight: 400;
+        line-height: 3rem;
+        margin-top: 20px;
+    }
+
+    // Specialitites - List
+    &__list {
+        margin-top: 60px;
+    }
+
+    &__item {
+        padding: 33px 42px 32px 43px;
+        background: abstracts.$bg-color;
+    }
+
+    &__icon {
+        @include abstracts.circle(74px);
+        @include abstracts.flex-center;
+        border: 1px solid #ecebf1;
+    }
+
+    &__title {
+        margin-top: 22px;
+        font-size: 3.2rem;
+        font-weight: 500;
+        line-height: 4rem;
+    }
+
+    &__text {
+        margin-top: 15px;
+        font-size: 1.8rem;
+        font-weight: 400;
+        line-height: 3rem;
+    }
+}
+
+// Projects
+.projects {
+    background: abstracts.$primary-color;
+
+    // Projects - Top
+    &__top {
+        padding-top: 86px;
+        @include abstracts.flex-gap(160px);
+    }
+
+    &__heading {
+        font-size: 5.6rem;
+        font-weight: 500;
+        line-height: 6.6rem;
+        color: #fff;
+        width: 468px;
+    }
+
+    &__description {
+        font-size: 1.8rem;
+        font-weight: 400;
+        line-height: 3rem;
+        color: #fff;
+        width: 370px;
+    }
+
+    // Projects - List
+    &__list {
+        margin-top: 70px;
+    }
+
+    &__item {
+        background: abstracts.$bg-color;
+        padding: 24px 23px 23px 34px;
+        @include abstracts.flex-gap(30px);
+        position: relative;
+
+        &::after {
+            content: url("../img/project-decoration.svg");
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+    }
+
+    &__info {
+        width: 220px;
+        flex-shrink: 0;
+    }
+
+    &__title {
+        font-size: 3.2rem;
+        font-weight: 500;
+        line-height: 4rem;
+        white-space: nowrap;
+    }
+
+    &__text {
+        margin-top: 10px;
+        font-size: 1.6rem;
+        font-weight: 400;
+        line-height: 2.3rem;
+    }
+
+    &__link {
+        margin-top: 20px;
+        font-size: 1.8rem;
+        font-weight: 700;
+        line-height: 3rem;
+        text-decoration: underline;
+        display: block;
+        color: abstracts.$secondary-color;
+    }
+
+    &__image {
+        position: relative;
+        z-index: 1;
+    }
+
+    // Projects - Btn
+    &__action {
+        margin-top: 80px;
+        text-align: center;
+        padding-bottom: 86px;
+    }
+
+    &__btn {
+        background: #fff;
+        color: abstracts.$secondary-color;
+    }
+}
+
+// About
+.about {
+    background: linear-gradient(to bottom, #fff 75%, abstracts.$bg-color 75%);
+
+    // About - Content
+    &__content {
+        padding-top: 140px;
+        text-align: center;
+    }
+
+    &__greeting {
+        font-size: 3.2rem;
+        font-weight: 500;
+        line-height: 4rem;
+        color: abstracts.$primary-color;
+
+        &::after {
+            content: url("../icons/hey.svg");
+            margin-left: 9px;
+        }
+    }
+
+    &__heading {
+        margin-top: 10px;
+        font-size: 5.6rem;
+        font-weight: 500;
+        line-height: 6.6rem;
+    }
+
+    &__description {
+        margin-top: 15px;
+        font-size: 1.8rem;
+        font-weight: 400;
+        line-height: 3rem;
+        margin-bottom: 70px;
+    }
+
+    // About - Divider
+    &__divider {
+        width: 946px;
+        height: 1px;
+        background-color: #cecdd0;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    // About - Statistics
+    &__stats {
+        padding: 20px 0;
+    }
+
+    &__number {
+        font-size: 5.6rem;
+        font-weight: 500;
+        line-height: 7.6rem;
+        color: abstracts.$secondary-color;
+        text-decoration: underline;
+    }
+
+    &__label {
+        font-size: 1.8rem;
+        font-weight: 400;
+        line-height: 3rem;
+        display: block;
+    }
+
+    // Intro video
+    &__video {
+        margin-top: 70px;
+        position: relative;
+
+        &-thumbnail {
+            @include abstracts.image-cover($h: 628px);
+        }
+
+        &-play {
+            @include abstracts.circle(111px);
+            background: rgba($color: #fff, $alpha: 0.7);
+            border: none;
+            outline: none;
+            @include abstracts.flex-center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        &-label {
+            font-size: 1.8rem;
+            font-weight: 700;
+            line-height: 3rem;
+            padding: 16px 28px 16px 29px;
+            background: #fff;
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+        }
+    }
+}
+
+// Testimonials
+.testimonials {
+    padding-top: 150px;
+    background: abstracts.$bg-color;
+    position: relative;
+
+    &::before {
+        content: url("../img/testimonials-decoration-01.svg");
+        position: absolute;
+        left: 0;
+        bottom: 0;
+    }
+    &::after {
+        content: url("../img/testimonials-decoration-02.svg");
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+    // Testimonials - Top
+    &__top {
+        text-align: center;
+    }
+
+    &__heading {
+        font-size: 5.6rem;
+        font-weight: 500;
+        line-height: 6.6rem;
+    }
+
+    &__description {
+        margin-top: 20px;
+        font-size: 1.8rem;
+        font-weight: 400;
+        line-height: 3rem;
+    }
+
+    // Testimonials - Slider
+    &__slider {
+        margin-top: 60px;
+        overflow: hidden;
+    }
+
+    &__track .row {
+        flex-wrap: nowrap;
+    }
+
+    &__item {
+        text-align: center;
+
+        &-inner {
+            width: 679px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
+    &__quote {
+        font-size: 2.4rem;
+        font-weight: 400;
+        line-height: 4rem;
+    }
+
+    &__author {
+        margin-top: 36px;
+        justify-content: center;
+        @include abstracts.flex-gap(15.17px);
+    }
+
+    &__avatar {
+        @include abstracts.circle(39.83px);
+        background-color: #f3885a;
+        overflow: hidden;
+        display: flex;
+        align-items: flex-end;
+    }
+
+    &__role {
+        margin-top: 3px;
+        font-size: 1.6rem;
+        font-weight: 400;
+        line-height: 2.9rem;
+    }
+
+    // Dots
+    &__dots {
+        margin-top: 40px;
+        @include abstracts.flex-center;
+        column-gap: 15px;
+        padding-bottom: 74px;
+    }
+
+    &__dot {
+        @include abstracts.circle(16px);
+        background: #d0b5bb;
+        outline: none;
+        border: none;
+
+        &--active {
+            background-color: abstracts.$primary-color;
+            @include abstracts.circle(20px);
+            padding: 3px;
+            border: 1px solid abstracts.$primary-color;
+            background-clip: content-box;
+        }
+    }
+}
+
+// Faq
+.faq {
+    &__inner {
+        margin-top: 95px;
+    }
+
+    &__heading {
+        font-size: 5.6rem;
+        font-weight: 500;
+        line-height: 6.6rem;
+        width: 575px;
+    }
+
+    &__list {
+        margin-top: 80px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__item {
+        height: 141px;
+        padding-left: 22px;
+        padding-bottom: 21px;
+        border-bottom: 2px solid abstracts.$primary-color;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__title {
+        font-size: 3.2rem;
+        font-weight: 500;
+        line-height: 4rem;
+        color: abstracts.$primary-color;
+    }
+
+    &__answer {
+        margin-top: 23px;
+        font-size: 1.8rem;
+        font-weight: 400;
+        line-height: 3rem;
+        width: 487px;
+    }
+
+    &__toggle {
+        @include abstracts.circle(50px);
+        @include abstracts.flex-center;
+        outline: none;
+        border: 1px solid #dfd8fc;
+        background: #fff;
+
+        &::after {
+            content: url(../icons/minus.svg);
+        }
+    }
+
+    &-toggle:not(:checked) ~ .faq__question {
+        .faq__answer {
+            display: none;
+        }
+        .faq__title {
+            color: abstracts.$secondary-color;
+        }
+    }
+    &-toggle:not(:checked) ~ .faq__toggle {
+        &::after {
+            content: url(../icons/plus.svg);
+        }
+    }
+    &__item:has(.faq-toggle:not(:checked)) {
+        border-bottom-color: abstracts.$secondary-color;
+    }
+}
+
+// Atmosphere
+.atmosphere {
+    margin-top: 160px;
+
+    // Atmosphere - Top
+    &__top {
+        text-align: center;
+    }
+
+    &__heading {
+        font-size: 5.6rem;
+        font-weight: 500;
+        line-height: 6.6rem;
+    }
+
+    &__description {
+        margin-top: 20px;
+        font-size: 1.8rem;
+        font-weight: 400;
+        line-height: 3rem;
+        width: 528px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    &__username {
+        font-size: 3.2rem;
+        font-weight: 500;
+        line-height: 4rem;
+        color: abstracts.$primary-color;
+        text-decoration: underline;
+        margin-top: 30px;
+        display: block;
+    }
+
+    // Atmosphere - Gallery
+    &__gallery {
+        margin-top: 70px;
+        overflow: hidden;
+        padding-bottom: 140px;
+    }
+
+    &__track .row {
+        flex-wrap: nowrap;
+    }
+
+    &__image {
+        @include abstracts.image-cover;
+    }
+}
+
+// CTA
+.cta {
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+        content: url("../img/cta-decoration-02.png");
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    &__inner {
+        background: abstracts.$bg-color;
+        text-align: center;
+        padding: 60px 0 68px;
+        position: relative;
+
+        &::before {
+            content: url("../img/cta-decoration-01.png");
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+        &::after {
+            content: url("../img/cta-decoration-03.png");
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+    }
+
+    &__heading {
+        margin-top: 10px;
+        font-size: 5.6rem;
+        font-weight: 500;
+        line-height: 6.6rem;
+    }
+
+    &__description {
+        margin-top: 20px;
+        font-size: 1.8rem;
+        font-weight: 400;
+        line-height: 3rem;
+        width: 570px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    &__btn {
+        margin-top: 30px;
+    }
+}

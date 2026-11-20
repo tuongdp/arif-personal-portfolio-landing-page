@@ -1,0 +1,29 @@
+@use "../abstracts/" as *;
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: $font-primary;
+    font-size: 1.6rem;
+    color: $text-color;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: $secondary-color;
+}
+
+p {
+    color: $text-color;
+}
+
+a {
+    color: $text-color;
+    text-decoration: none;
+}

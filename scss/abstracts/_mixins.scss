@@ -1,0 +1,35 @@
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flex-gap($g: 0) {
+    display: flex;
+    align-items: center;
+    gap: $g;
+}
+
+@mixin image-cover($w: 100%, $h: 100%) {
+    display: block;
+    width: $w;
+    height: $h;
+    object-fit: cover;
+}
+
+@mixin transition($property: all, $duration: 0.3s, $timing: ease) {
+    transition: $property $duration $timing;
+}
+
+@mixin line-clamp($lines: 2) {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $lines;
+    overflow: hidden;
+}
+
+@mixin circle($size) {
+    width: $size;
+    height: $size;
+    border-radius: 50%;
+}

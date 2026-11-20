@@ -1,0 +1,32 @@
+@use "sass:map";
+
+// Breakpoints
+$breakpoints: (
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1400px,
+);
+
+// Min-width: >= breakpoint
+@mixin min-width($breakpoint) {
+    @if map.has-key($breakpoints, $breakpoint) {
+        @media (min-width: map.get($breakpoints, $breakpoint)) {
+            @content;
+        }
+    } @else {
+        @error "Breakpoint `#{$breakpoint}` không tồn tại.";
+    }
+}
+
+// Max-width: <= breakpoint
+@mixin max-width($breakpoint) {
+    @if map.has-key($breakpoints, $breakpoint) {
+        @media (max-width: map.get($breakpoints, $breakpoint)) {
+            @content;
+        }
+    } @else {
+        @error "Breakpoint `#{$breakpoint}` không tồn tại.";
+    }
+}
