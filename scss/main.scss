@@ -4,20 +4,78 @@
 @use "./components";
 @use "./pages";
 
+// Common
+a {
+    text-decoration: none;
+}
+
+.dots {
+    @include abstracts.flex-center;
+    column-gap: 15px;
+}
+
+.dot {
+    @include abstracts.circle(16px);
+    background: #d0b5bb;
+    outline: none;
+    border: none;
+
+    &--active {
+        background-color: abstracts.$primary-color;
+        @include abstracts.circle(20px);
+        padding: 3px;
+        border: 1px solid abstracts.$primary-color;
+        background-clip: content-box;
+    }
+}
+
 // Hero
 .hero {
     background: abstracts.$bg-color;
     padding-top: 44px;
 
+    .row {
+        @include abstracts.max-width(sm) {
+            row-gap: 20px;
+        }
+    }
+
+    @include abstracts.max-width(sm) {
+        padding-top: 50.5px;
+
+        .col-media {
+            order: 2;
+        }
+
+        .col-content {
+            order: 1;
+        }
+    }
+
     // Hero - Media
     &__media {
         position: relative;
+        overflow: hidden;
 
         &::after {
             content: url("../img/hero-decoration-large.svg");
             position: absolute;
             right: -123px;
             bottom: 0;
+
+            @include abstracts.max-width(md) {
+                content: "";
+                right: -90px;
+                width: 543.71px;
+                height: 402.15px;
+                background: url("../img/hero-decoration-large.svg") center /
+                    contain no-repeat;
+            }
+
+            @include abstracts.max-width(sm) {
+                right: -102px;
+                bottom: -14px;
+            }
         }
     }
 
@@ -25,6 +83,15 @@
         @include abstracts.image-cover(514px, 705px);
         position: relative;
         z-index: 1;
+
+        @include abstracts.max-width(md) {
+            @include abstracts.image-cover(259px, 355px);
+        }
+
+        @include abstracts.max-width(sm) {
+            margin-left: auto;
+            margin-right: auto;
+        }
     }
 
     // Hero - Content
@@ -38,20 +105,26 @@
             position: absolute;
             bottom: 0;
             right: -257px;
+
+            @include abstracts.max-width(md) {
+                content: "";
+            }
+        }
+
+        @include abstracts.max-width(md) {
+            margin-left: 0;
         }
     }
 
     &__title {
-        font-size: 8rem;
-        font-weight: 500;
-        line-height: 7.6rem;
         padding-top: 137px;
+
+        @include abstracts.max-width(md) {
+            padding-top: 0;
+        }
     }
 
     &__description {
-        font-size: 1.8rem;
-        font-weight: 400;
-        line-height: 3rem;
         width: 370px;
         margin-top: 20px;
     }
@@ -59,34 +132,54 @@
     &__action {
         margin-top: 50px;
         @include abstracts.flex-gap(30px);
+
+        @include abstracts.max-width(sm) {
+            margin-top: 30px;
+        }
     }
 
     &__link {
-        font-size: 1.8rem;
         font-weight: 700;
-        line-height: 3rem;
         text-decoration: underline;
-        color: abstracts.$secondary-color;
+        color: abstracts.$heading-color;
     }
 
     &__social {
         margin-top: 104px;
         @include abstracts.flex-gap(15px);
 
+        @include abstracts.max-width(md) {
+            margin-top: 25px;
+        }
         &-label {
             font-size: 1.6rem;
-            font-weight: 500;
-            line-height: 3rem;
+
+            @include abstracts.max-width(md) {
+                font-size: 1.4rem;
+                line-height: 2rem;
+            }
         }
 
         &-list {
             @include abstracts.flex-gap(20px);
+
+            @include abstracts.max-width(sm) {
+                gap: 15.5px;
+            }
         }
 
         &-item {
             @include abstracts.circle(40px);
             @include abstracts.flex-center;
             border: 1px solid #e3e2e8;
+
+            @include abstracts.max-width(sm) {
+                @include abstracts.circle(31px);
+            }
+        }
+
+        &-link {
+            @include abstracts.flex-center;
         }
     }
 
@@ -101,12 +194,25 @@
 .clients {
     margin-top: 98px;
 
+    @include abstracts.max-width(sm) {
+        margin-top: 120px;
+    }
+    & .row {
+        align-items: center;
+        row-gap: 40px;
+    }
     // Client - Heading
     &__heading {
         font-size: 4.2rem;
         font-weight: 500;
         line-height: 5rem;
         position: relative;
+
+        @include abstracts.max-width(md) {
+            text-align: center;
+            font-size: 2.8rem;
+            line-height: 3.4rem;
+        }
 
         &::before {
             position: absolute;
@@ -119,6 +225,12 @@
             background: abstracts.$primary-color;
             vertical-align: middle;
             margin-right: 13px;
+
+            @include abstracts.max-width(md) {
+                left: 50%;
+                transform: translateX(-50%);
+                top: 0;
+            }
         }
     }
 
@@ -130,6 +242,11 @@
         justify-content: space-between;
         align-items: center;
         row-gap: 36px;
+
+        @include abstracts.max-width(md) {
+            margin-left: 0;
+            grid-template-columns: repeat(2, auto);
+        }
     }
 
     &__item {
@@ -142,34 +259,44 @@
     margin-top: 133px;
     margin-bottom: 140px;
 
+    @include abstracts.max-width(md) {
+        margin-top: 120px;
+        margin-bottom: 120px;
+    }
     // Specialitites - Top
     &__top {
         width: 534px;
         text-align: center;
         margin-left: auto;
         margin-right: auto;
-    }
 
-    &__heading {
-        font-size: 5.6rem;
-        font-weight: 500;
-        line-height: 6.6rem;
+        @include abstracts.max-width(sm) {
+            width: 100%;
+        }
     }
 
     &__description {
-        font-size: 1.8rem;
-        font-weight: 400;
-        line-height: 3rem;
         margin-top: 20px;
     }
 
     // Specialitites - List
     &__list {
         margin-top: 60px;
+        overflow: hidden;
+
+        @include abstracts.max-width(sm) {
+            margin-top: 50px;
+        }
+    }
+
+    &__track {
+        & .row {
+            flex-wrap: nowrap;
+        }
     }
 
     &__item {
-        padding: 33px 42px 32px 43px;
+        padding: 29px 50px;
         background: abstracts.$bg-color;
     }
 
@@ -177,20 +304,30 @@
         @include abstracts.circle(74px);
         @include abstracts.flex-center;
         border: 1px solid #ecebf1;
+
+        @include abstracts.max-width(md) {
+            @include abstracts.circle(62px);
+        }
     }
 
     &__title {
         margin-top: 22px;
-        font-size: 3.2rem;
-        font-weight: 500;
-        line-height: 4rem;
+
+        @include abstracts.max-width(md) {
+            margin-top: 30px;
+        }
     }
 
     &__text {
         margin-top: 15px;
-        font-size: 1.8rem;
-        font-weight: 400;
-        line-height: 3rem;
+
+        @include abstracts.max-width(md) {
+            margin-top: 10px;
+        }
+    }
+
+    &__dots {
+        margin-top: 40px;
     }
 }
 
@@ -202,27 +339,44 @@
     &__top {
         padding-top: 86px;
         @include abstracts.flex-gap(160px);
+
+        @include abstracts.max-width(md) {
+            padding-top: 69px;
+            @include abstracts.flex-gap(100px);
+        }
+
+        @include abstracts.max-width(sm) {
+            flex-direction: column;
+            row-gap: 20px;
+            text-align: center;
+        }
     }
 
     &__heading {
-        font-size: 5.6rem;
-        font-weight: 500;
-        line-height: 6.6rem;
         color: #fff;
         width: 468px;
+
+        @include abstracts.max-width(sm) {
+            width: 100%;
+        }
     }
 
     &__description {
-        font-size: 1.8rem;
-        font-weight: 400;
-        line-height: 3rem;
-        color: #fff;
+        color: #8e76f3;
         width: 370px;
+
+        @include abstracts.max-width(sm) {
+            width: 100%;
+        }
     }
 
     // Projects - List
     &__list {
         margin-top: 70px;
+
+        @include abstracts.max-width(md) {
+            margin-top: 60px;
+        }
     }
 
     &__item {
@@ -231,46 +385,68 @@
         @include abstracts.flex-gap(30px);
         position: relative;
 
+        @include abstracts.max-width(md) {
+            padding: 20px 15px;
+        }
         &::after {
             content: url("../img/project-decoration.svg");
             position: absolute;
             bottom: 0;
             right: 0;
+
+            @include abstracts.max-width(md) {
+                content: "";
+            }
         }
     }
 
     &__info {
         width: 220px;
         flex-shrink: 0;
+
+        @include abstracts.max-width(md) {
+            width: 176px;
+        }
     }
 
     &__title {
-        font-size: 3.2rem;
-        font-weight: 500;
-        line-height: 4rem;
         white-space: nowrap;
     }
 
     &__text {
         margin-top: 10px;
-        font-size: 1.6rem;
-        font-weight: 400;
-        line-height: 2.3rem;
+
+        @include abstracts.max-width(md) {
+            margin-top: 4px;
+        }
     }
 
     &__link {
         margin-top: 20px;
-        font-size: 1.8rem;
         font-weight: 700;
-        line-height: 3rem;
         text-decoration: underline;
         display: block;
-        color: abstracts.$secondary-color;
+        color: abstracts.$heading-color;
+
+        @include abstracts.max-width(md) {
+            margin-top: 4px;
+        }
     }
 
     &__image {
         position: relative;
         z-index: 1;
+        @include abstracts.image-cover(246px, 187px);
+
+        @include abstracts.max-width(md) {
+            right: 15px;
+            @include abstracts.image-cover(100px, 71px);
+        }
+
+        @include abstracts.max-width(sm) {
+            right: 15px;
+            @include abstracts.image-cover(122px, 93px);
+        }
     }
 
     // Projects - Btn
@@ -278,11 +454,16 @@
         margin-top: 80px;
         text-align: center;
         padding-bottom: 86px;
+
+        @include abstracts.max-width(md) {
+            margin-top: 50px;
+            padding-bottom: 60px;
+        }
     }
 
     &__btn {
         background: #fff;
-        color: abstracts.$secondary-color;
+        color: abstracts.$heading-color;
     }
 }
 
@@ -294,12 +475,13 @@
     &__content {
         padding-top: 140px;
         text-align: center;
+
+        @include abstracts.max-width(md) {
+            padding-top: 120px;
+        }
     }
 
     &__greeting {
-        font-size: 3.2rem;
-        font-weight: 500;
-        line-height: 4rem;
         color: abstracts.$primary-color;
 
         &::after {
@@ -310,39 +492,59 @@
 
     &__heading {
         margin-top: 10px;
-        font-size: 5.6rem;
-        font-weight: 500;
-        line-height: 6.6rem;
     }
 
     &__description {
-        margin-top: 15px;
-        font-size: 1.8rem;
-        font-weight: 400;
-        line-height: 3rem;
-        margin-bottom: 70px;
-    }
+        margin: 15px auto 70px;
+        width: 570px;
+        max-width: 100%;
 
-    // About - Divider
-    &__divider {
-        width: 946px;
-        height: 1px;
-        background-color: #cecdd0;
-        margin-left: auto;
-        margin-right: auto;
+        @include abstracts.max-width(md) {
+            margin-top: 20px;
+            margin-bottom: 50px;
+        }
     }
 
     // About - Statistics
     &__stats {
         padding: 20px 0;
+        width: 946px;
+        max-width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        margin-left: auto;
+        margin-right: auto;
+        border-top: 1px solid #cecdd0;
+        border-bottom: 1px solid #cecdd0;
+
+        @include abstracts.max-width(sm) {
+            column-gap: 50px;
+            padding: 20px 16px;
+        }
+    }
+
+    &__stat:nth-child(1) {
+        order: 2;
+    }
+    &__stat:nth-child(2) {
+        order: 1;
+    }
+    &__stat:nth-child(3) {
+        order: 3;
     }
 
     &__number {
         font-size: 5.6rem;
         font-weight: 500;
         line-height: 7.6rem;
-        color: abstracts.$secondary-color;
+        color: abstracts.$heading-color;
         text-decoration: underline;
+
+        @include abstracts.max-width(md) {
+            font-size: 3rem;
+            line-height: 4.2rem;
+        }
     }
 
     &__label {
@@ -350,6 +552,11 @@
         font-weight: 400;
         line-height: 3rem;
         display: block;
+
+        @include abstracts.max-width(md) {
+            font-size: 1.6rem;
+            line-height: 2.2rem;
+        }
     }
 
     // Intro video
@@ -357,8 +564,15 @@
         margin-top: 70px;
         position: relative;
 
+        @include abstracts.max-width(md) {
+            margin-top: 40px;
+        }
         &-thumbnail {
             @include abstracts.image-cover($h: 628px);
+
+            @include abstracts.max-width(sm) {
+                @include abstracts.image-cover($h: 276px);
+            }
         }
 
         &-play {
@@ -371,6 +585,10 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+
+            @include abstracts.max-width(sm) {
+                @include abstracts.circle(77px);
+            }
         }
 
         &-label {
@@ -382,6 +600,11 @@
             position: absolute;
             right: 10px;
             bottom: 10px;
+
+            @include abstracts.max-width(sm) {
+                padding: 7px 21px;
+                font-size: 1.2rem;
+            }
         }
     }
 }
@@ -392,40 +615,56 @@
     background: abstracts.$bg-color;
     position: relative;
 
+    @include abstracts.max-width(sm) {
+        padding-top: 121px;
+    }
+
     &::before {
         content: url("../img/testimonials-decoration-01.svg");
         position: absolute;
         left: 0;
         bottom: 0;
+
+        @include abstracts.max-width(sm) {
+            content: "";
+            background: url("../img/testimonials-decoration-01.svg") center /
+                contain no-repeat;
+            width: 96.16px;
+            height: 71.13px;
+        }
     }
     &::after {
         content: url("../img/testimonials-decoration-02.svg");
         position: absolute;
         right: 0;
         bottom: 0;
+
+        @include abstracts.max-width(sm) {
+            content: "";
+            background: url("../img/testimonials-decoration-02.svg") center /
+                contain no-repeat;
+            width: 96.16px;
+            height: 71.13px;
+        }
     }
+
     // Testimonials - Top
     &__top {
         text-align: center;
     }
 
-    &__heading {
-        font-size: 5.6rem;
-        font-weight: 500;
-        line-height: 6.6rem;
-    }
-
     &__description {
         margin-top: 20px;
-        font-size: 1.8rem;
-        font-weight: 400;
-        line-height: 3rem;
     }
 
     // Testimonials - Slider
     &__slider {
         margin-top: 60px;
         overflow: hidden;
+
+        @include abstracts.max-width(sm) {
+            margin-top: 40px;
+        }
     }
 
     &__track .row {
@@ -437,6 +676,7 @@
 
         &-inner {
             width: 679px;
+            max-width: 100%;
             margin-left: auto;
             margin-right: auto;
         }
@@ -446,12 +686,21 @@
         font-size: 2.4rem;
         font-weight: 400;
         line-height: 4rem;
+
+        @include abstracts.max-width(sm) {
+            font-size: 1.8rem;
+            line-height: 3rem;
+        }
     }
 
     &__author {
         margin-top: 36px;
         justify-content: center;
         @include abstracts.flex-gap(15.17px);
+
+        @include abstracts.max-width(sm) {
+            margin-top: 48px;
+        }
     }
 
     &__avatar {
@@ -469,27 +718,9 @@
         line-height: 2.9rem;
     }
 
-    // Dots
     &__dots {
-        margin-top: 40px;
-        @include abstracts.flex-center;
-        column-gap: 15px;
-        padding-bottom: 74px;
-    }
-
-    &__dot {
-        @include abstracts.circle(16px);
-        background: #d0b5bb;
-        outline: none;
-        border: none;
-
-        &--active {
-            background-color: abstracts.$primary-color;
-            @include abstracts.circle(20px);
-            padding: 3px;
-            border: 1px solid abstracts.$primary-color;
-            background-clip: content-box;
-        }
+        margin-top: 20px;
+        padding-bottom: 67px;
     }
 }
 
@@ -497,22 +728,29 @@
 .faq {
     &__inner {
         margin-top: 95px;
+
+        @include abstracts.max-width(sm) {
+            margin-top: 120px;
+        }
     }
 
     &__heading {
-        font-size: 5.6rem;
-        font-weight: 500;
-        line-height: 6.6rem;
         width: 575px;
+        max-width: 100%;
     }
 
     &__list {
         margin-top: 80px;
         display: flex;
         flex-direction: column;
+
+        @include abstracts.max-width(sm) {
+            margin-top: 0;
+        }
     }
 
     &__item {
+        padding-top: 40px;
         height: 141px;
         padding-left: 22px;
         padding-bottom: 21px;
@@ -520,6 +758,18 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+
+        @include abstracts.max-width(sm) {
+            padding-left: 0;
+            padding-bottom: 15px;
+            height: auto;
+        }
+    }
+
+    &__question {
+        @include abstracts.max-width(sm) {
+            width: calc(100% - 33px);
+        }
     }
 
     &__title {
@@ -527,6 +777,11 @@
         font-weight: 500;
         line-height: 4rem;
         color: abstracts.$primary-color;
+
+        @include abstracts.max-width(sm) {
+            font-size: 2.4rem;
+            line-height: 3rem;
+        }
     }
 
     &__answer {
@@ -535,6 +790,12 @@
         font-weight: 400;
         line-height: 3rem;
         width: 487px;
+        @include abstracts.max-width(sm) {
+            margin-top: 15px;
+            font-size: 1.6rem;
+            line-height: 2.6rem;
+            width: 100%;
+        }
     }
 
     &__toggle {
@@ -544,6 +805,10 @@
         border: 1px solid #dfd8fc;
         background: #fff;
 
+        @include abstracts.max-width(sm) {
+            @include abstracts.circle(33px);
+            flex-shrink: 0;
+        }
         &::after {
             content: url(../icons/minus.svg);
         }
@@ -554,7 +819,7 @@
             display: none;
         }
         .faq__title {
-            color: abstracts.$secondary-color;
+            color: abstracts.$heading-color;
         }
     }
     &-toggle:not(:checked) ~ .faq__toggle {
@@ -563,7 +828,7 @@
         }
     }
     &__item:has(.faq-toggle:not(:checked)) {
-        border-bottom-color: abstracts.$secondary-color;
+        border-bottom-color: abstracts.$heading-color;
     }
 }
 
@@ -571,23 +836,18 @@
 .atmosphere {
     margin-top: 160px;
 
+    @include abstracts.max-width(sm) {
+        margin-top: 120px;
+    }
     // Atmosphere - Top
     &__top {
         text-align: center;
     }
 
-    &__heading {
-        font-size: 5.6rem;
-        font-weight: 500;
-        line-height: 6.6rem;
-    }
-
     &__description {
         margin-top: 20px;
-        font-size: 1.8rem;
-        font-weight: 400;
-        line-height: 3rem;
         width: 528px;
+        max-width: 100%;
         margin-left: auto;
         margin-right: auto;
     }
@@ -600,6 +860,11 @@
         text-decoration: underline;
         margin-top: 30px;
         display: block;
+
+        @include abstracts.max-width(sm) {
+            font-size: 2rem;
+            margin-top: 10px;
+        }
     }
 
     // Atmosphere - Gallery
@@ -607,6 +872,11 @@
         margin-top: 70px;
         overflow: hidden;
         padding-bottom: 140px;
+
+        @include abstracts.max-width(sm) {
+            margin-top: 60px;
+            padding-bottom: 40px;
+        }
     }
 
     &__track .row {
@@ -615,6 +885,10 @@
 
     &__image {
         @include abstracts.image-cover;
+    }
+
+    &__dots {
+        padding-bottom: 120px;
     }
 }
 
@@ -629,6 +903,10 @@
         top: 0;
         left: 50%;
         transform: translateX(-50%);
+
+        @include abstracts.max-width(sm) {
+            content: "";
+        }
     }
 
     &__inner {
@@ -636,36 +914,53 @@
         text-align: center;
         padding: 60px 0 68px;
         position: relative;
-
+        @include abstracts.max-width(sm) {
+            padding: 36px 0 35px;
+        }
         &::before {
             content: url("../img/cta-decoration-01.png");
             position: absolute;
             bottom: 0;
             left: 0;
+
+            @include abstracts.max-width(sm) {
+                content: "";
+            }
         }
         &::after {
             content: url("../img/cta-decoration-03.png");
             position: absolute;
             top: 0;
             right: 0;
+            @include abstracts.max-width(sm) {
+                content: "";
+            }
+        }
+    }
+
+    &__icon {
+        @include abstracts.max-width(sm) {
+            @include abstracts.image-cover(48px, 48px);
+            margin-left: auto;
+            margin-right: auto;
         }
     }
 
     &__heading {
         margin-top: 10px;
-        font-size: 5.6rem;
-        font-weight: 500;
-        line-height: 6.6rem;
     }
 
     &__description {
         margin-top: 20px;
-        font-size: 1.8rem;
-        font-weight: 400;
-        line-height: 3rem;
+
         width: 570px;
+        max-width: 100%;
         margin-left: auto;
         margin-right: auto;
+
+        @include abstracts.max-width(sm) {
+            margin-top: 10px;
+        }
     }
 
     &__btn {

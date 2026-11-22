@@ -3,6 +3,10 @@
 .footer {
     margin-top: 50px;
 
+    @include max-width(sm) {
+        margin-top: 120px;
+    }
+
     &__divider {
         width: 1429px;
         max-width: 100%;
@@ -10,6 +14,10 @@
         background: #cecdd2;
         margin-left: auto;
         margin-right: auto;
+
+        @include max-width(md) {
+            display: none;
+        }
     }
 
     &__bottom {
@@ -21,14 +29,27 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+
+            @include max-width(md) {
+                flex-direction: column;
+                padding: 0;
+            }
         }
     }
 
-    &__copyright,
-    &__policy-link {
-        font-size: 1.8rem;
-        font-weight: 400;
-        line-height: 3rem;
+    &__policies {
+        @include max-width(md) {
+            order: 1;
+            border-bottom: 1px solid #ededee;
+            padding-bottom: 29px;
+        }
+    }
+
+    &__copyright {
+        @include max-width(md) {
+            order: 2;
+            padding-top: 20px;
+        }
     }
 
     &__policy + &__policy {
@@ -38,5 +59,70 @@
 
     &__policies {
         @include flex-gap(23px);
+    }
+
+    .navbar {
+        position: relative;
+        @include flex-gap;
+        justify-content: space-between;
+        padding: 27px 0;
+
+        @include max-width(md) {
+            // justify-content: flex-end;
+            flex-direction: column;
+        }
+
+        &__mail {
+            @include flex-gap(10px);
+
+            @include max-width(md) {
+                order: 3;
+                margin-top: 58px;
+            }
+            &-img {
+                @include circle(46px);
+                @include flex-center;
+                border: 1px solid #dfd8fc;
+
+                @include max-width(md) {
+                }
+
+                & img {
+                    width: 16.7px;
+                    height: 11.13px;
+                }
+            }
+
+            &-text {
+                font-size: 2.2rem;
+                font-weight: 500;
+                line-height: 1.36;
+                color: #080415;
+                text-decoration: underline;
+
+                @include max-width(md) {
+                }
+            }
+        }
+
+        &__logo {
+            @include max-width(md) {
+                order: 1;
+            }
+        }
+
+        &__list-nav {
+            @include flex-gap;
+
+            @include max-width(md) {
+                // display: none;
+                margin-top: 20px;
+                order: 2;
+            }
+        }
+
+        &__item-nav {
+            padding: 0 21px;
+        }
     }
 }

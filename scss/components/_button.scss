@@ -28,4 +28,10 @@
     &:hover {
         opacity: 0.85;
     }
+
+    @include max-width(md) {
+        font-size: 1.6rem;
+        line-height: 3rem;
+        padding: 12px 31px 13px;
+    }
 }

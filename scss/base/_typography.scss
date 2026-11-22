@@ -7,7 +7,6 @@ html {
 body {
     font-family: $font-primary;
     font-size: 1.6rem;
-    color: $text-color;
 }
 
 h1,
@@ -16,14 +15,62 @@ h3,
 h4,
 h5,
 h6 {
-    color: $secondary-color;
+    color: $heading-color;
 }
 
-p {
-    color: $text-color;
+h1 {
+    font-size: 8rem;
+    font-weight: 500;
+    line-height: 7.6rem;
+
+    @include max-width(md) {
+        font-size: 4.2rem;
+        line-height: 5rem;
+    }
 }
 
-a {
+h2 {
+    font-size: 5.6rem;
+    font-weight: 500;
+    line-height: 6.6rem;
+
+    @include max-width(md) {
+        font-size: 3.6rem;
+        line-height: 4.2rem;
+    }
+}
+
+h3 {
+    font-size: 3.2rem;
+    font-weight: 500;
+    line-height: 4rem;
+
+    @include max-width(md) {
+        font-size: 2.8rem;
+        line-height: 3.6rem;
+    }
+
+    @include max-width(sm) {
+        font-size: 2.4rem;
+        line-height: 3.4rem;
+    }
+}
+
+a,
+p,
+span {
     color: $text-color;
-    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 3rem;
+
+    @include max-width(md) {
+        font-size: 1.6rem;
+        line-height: 2.6rem;
+    }
+
+    @include max-width(sm) {
+        font-size: 1.4rem;
+        line-height: 2rem;
+    }
 }
